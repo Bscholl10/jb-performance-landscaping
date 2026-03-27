@@ -51,8 +51,7 @@ public class WebController {
     public String submitContact(@ModelAttribute("quote") QuoteRequest quote,
             Model model) {
         this.storage.save(quote);
-        this.email.sendNewLead(quote);
-        this.email.sendCustomerConfirmation(quote);
+        this.email.sendAllNotifications(quote);
         this.sheets.send(quote);
         model.addAttribute("quote", quote);
         return "thanks";
